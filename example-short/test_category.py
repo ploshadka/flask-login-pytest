@@ -17,7 +17,7 @@ def test_category_rename(client):
     db.session.commit()
 
     # Mock
-    mock_name = 'Category Test New'
+    mock_name = 'Test Category New'
     mock_request_data = {
         'cat_id': cat.id,
         'name': mock_name,
