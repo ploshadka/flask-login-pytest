@@ -11,7 +11,8 @@ headers = {"Content-Type": "application/json"}
 @pytest.mark.usefixtures("authenticated_request")
 def test_category_rename(client):
     # Create test data
-    cat = Category(user_id=1, name='Test Category')
+    user_id = 1
+    cat = Category(user_id=user_id, name='Test Category')
     db.session.add(cat)
     db.session.commit()
 
@@ -27,7 +28,7 @@ def test_category_rename(client):
     client.patch(url, headers=headers, data=json.dumps(mock_request_data))
 
     # Check new name
-    category = get_category_by_id(1, cat.id)
+    category = get_category_by_id(user_id, cat.id)
     assert category.name == mock_name
 
     # Clear test data
